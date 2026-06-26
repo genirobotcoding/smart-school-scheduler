@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>우리학교 스마트 스케줄러</title>
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <main class="app-shell">
+      <section class="topbar" aria-label="대시보드 상단">
+        <div>
+          <p class="eyebrow">우리학교 스마트 스케줄러</p>
+          <h1 id="schoolTitle">내 학교 대시보드</h1>
+        </div>
+        <div class="topbar-actions">
+          <div class="today-chip" id="todayChip"></div>
+          <button class="ghost-button" id="settingsToggle" type="button">설정</button>
+        </div>
+      </section>
+
+      <section class="control-panel hidden" id="settingsPanel" aria-label="학교 및 API 설정">
+        <label class="field">
+          <span>나이스 API 키</span>
+          <input id="apiKeyInput" type="password" placeholder="처음 한 번만 입력" autocomplete="off" />
+        </label>
+        <label class="field school-field">
+          <span>학교명</span>
+          <input id="schoolNameInput" type="search" placeholder="예: 한국중학교" autocomplete="off" />
+        </label>
+        <button class="primary-button" id="searchButton" type="button">학교 검색</button>
+      </section>
+
+      <section class="school-results hidden" id="schoolResults" aria-label="학교 검색 결과"></section>
+
+      <section class="todo-focus panel" aria-label="중요 할 일">
+        <div class="panel-header">
+          <div>
+            <p class="eyebrow">todo</p>
+            <h2>해야 할 일</h2>
+          </div>
+          <span class="todo-count" id="todoCount">0개</span>
+        </div>
+        <form class="todo-form" id="todoForm">
+          <input id="todoInput" type="text" placeholder="예: 수학 프린트 풀기" />
+          <input id="todoDateInput" type="date" aria-label="할 일 날짜" />
+          <button class="primary-button" type="submit">추가</button>
+        </form>
+        <ul class="todo-list" id="todoList"></ul>
+      </section>
+
+      <section class="dashboard">
+        <article class="summary-card accent-red">
+          <span>시험 D-Day</span>
+          <strong id="ddayValue">D-14</strong>
+          <p id="ddayLabel">1학기 기말고사까지</p>
+        </article>
+        <article class="summary-card accent-green">
+          <span>오늘 급식</span>
+          <strong id="mealStatus">준비됨</strong>
+          <p id="mealShort">급식 정보를 불러오세요</p>
+        </article>
+        <article class="summary-card accent-blue">
+          <span>이번 주 일정</span>
+          <strong id="scheduleCount">3개</strong>
+          <p>학사일정 카드 확인</p>
+        </article>
+      </section>
+
+      <section class="content-grid">
+        <article class="panel">
+          <div class="panel-header">
+            <div>
+              <p class="eyebrow">meal</p>
+              <h2>오늘 급식</h2>
+            </div>
+            <button class="ghost-button" id="loadTodayButton" type="button">새로고침</button>
+          </div>
+          <div class="meal-box" id="mealBox"></div>
+        </article>
+
+        <article class="panel">
+          <div class="panel-header">
+            <div>
+              <p class="eyebrow">calendar</p>
+              <h2>이번 주 학사일정</h2>
+            </div>
+            <button class="ghost-button" id="loadWeekButton" type="button">새로고침</button>
+          </div>
+          <div class="schedule-list" id="scheduleList"></div>
+        </article>
+      </section>
+    </main>
+
+    <template id="schoolButtonTemplate">
+      <button class="school-result" type="button"></button>
+    </template>
+
+    <script src="./app.js"></script>
+  </body>
+</html>
